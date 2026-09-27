@@ -1,3 +1,11 @@
+# ------------------------------------------------------------
+"""
+Author: Hanan Abdulwahab Siala
+Supervisor: Kevin Lano
+University: King's College London
+Date: 17-09-2026
+"""
+# ------------------------------------------------------------
 import os
 import gradio as gr
 from model_service import (
