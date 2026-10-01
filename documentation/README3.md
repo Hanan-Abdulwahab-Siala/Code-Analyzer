@@ -129,10 +129,22 @@ JOBID=12345678
 
 Your JOBID will be different each time you submit a new job.
 
----
-#### 6. Open the Tunnel Automatically
+Wait until the job is running:
 
-Now go to your Windows PC and open a second CMD window, and put:
+```bash
+squeue -j 12345678
+```
+Your output will look like:
+```bash
+JOBID       PARTITION   NAME           USER    ST   NODELIST
+12345678    gpu         CodeAnalyzer   ...     R    gpu-node-42
+```
+
+---
+
+#### 6. Open the Tunnel
+
+Now go to your Windows PC and open a second CMD window, and enter:
 
 ```bash
 for /f "delims=" %N in ('ssh -m hmac-sha2-512 USER@HPC_HOST "squeue -n JOB_NAME -h -o %%N"') do ssh -m hmac-sha2-512 -N -L LOCAL_PORT:%N:REMOTE_PORT USER@HPC_HOST
