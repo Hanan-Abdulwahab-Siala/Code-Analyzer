@@ -4,10 +4,9 @@ A GPU-powered application for analyzing Mamba/Python code using a fine-tuned Mis
 
 The project provides:
 
-- A command-line analyzer
 - A Gradio web interface
+- A command-line analyzer
 - LoRA adapter and full-model options
-- Automatic GPU hardware detection
 - Optional KCL CREATE HPC scripts for the project author's GPU workflow
 
 ---
