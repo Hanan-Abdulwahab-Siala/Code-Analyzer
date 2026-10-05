@@ -209,20 +209,24 @@ Please review the applicable model licenses and terms before redistributing mode
 
 ---
 
-## Credits
-
-**Student:** Hanan Abdulwahab Siala &nbsp;&nbsp;&nbsp;&nbsp; **Supervisor:** Kevin Lano
-
----
-
-## License
-
-MIT License
-
----
-
 ## Contact
 
-hanan.siala@kcl.ac.uk &nbsp;&nbsp;&nbsp;&nbsp; kevin.lano@kcl.ac.uk
+<div align="center">
 
-King's College London
+<table>
+  <tr>
+    <td align="left"><strong>Student:</strong> Hanan Abdulwahab Siala</td>
+    <td align="left"><strong>Supervisor:</strong> Kevin Lano</td>
+  </tr>
+  <tr>
+    <td align="left"><a href="mailto:hanan.siala@kcl.ac.uk">hanan.siala@kcl.ac.uk</a></td>
+    <td align="left"><a href="mailto:kevin.lano@kcl.ac.uk">kevin.lano@kcl.ac.uk</a></td>
+  </tr>
+</table>
+
+King's College London<br>
+2026
+
+</div>
+
+---
