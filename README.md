@@ -1,6 +1,6 @@
 # Code Analyzer
 
-A GPU-powered application for analyzing Mamba/Python code using a fine-tuned Mistral LLM.
+A GPU-powered application for analyzing Mamba/Python code using a fine-tuned Mistral LLM or a fine-tuned DeepSeek LLM.
 
 The project provides:
 
