@@ -63,7 +63,7 @@ Recommended:
 Clone the repository:
 
 ```bash
-git clone https://github.com/HA-Siala/Code-Analyzer.git
+git clone https://github.com/Hanan-Abdulwahab-Siala/Code-Analyzer.git
 cd Code-Analyzer
 ```
 
