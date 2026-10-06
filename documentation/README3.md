@@ -41,7 +41,7 @@ ssh -m hmac-sha2-512 k12345@hpc.create.kcl.ac.uk
 
 #### 2. Go to the Project Directory
 
-Move into the Code Analyzer project:
+Move into the Code-Analyzer project:
 
 ```bash
 cd ~/Code-Analyzer
