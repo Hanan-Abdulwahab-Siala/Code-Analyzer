@@ -1,6 +1,6 @@
 # Code Analyzer
 
-A GPU-powered application for analyzing Mamba/Python code using a fine-tuned Mistral LLM or a fine-tuned DeepSeek LLM.
+A GPU-powered application for analyzing Mamba/Python/Java code using a fine-tuned Mistral LLM or a fine-tuned DeepSeek LLM.
 
 The project provides:
 
@@ -28,6 +28,7 @@ Code-Analyzer/
 ├── input/
 │   └── sample.txt
 │   └── sample.py
+│   └── sample.java
 │
 ├── output/
 │   └── output.txt
@@ -178,6 +179,9 @@ Model identifiers used by the project include:
 - 👉 [Version 2: HA-Siala/Detect-Flaws-v0.2](https://huggingface.co/HA-Siala/Detect-Flaws-v0.2)  
 - 👉 [Version 1: HA-Siala/RefactoringPy-v0.1](https://huggingface.co/HA-Siala/RefactoringPy-v0.1)  
 
+`Java`
+- 👉 [Version 1: HA-Siala/RefactoringJava-v0.1](https://huggingface.co/HA-Siala/RefactoringJava-v0.1)  
+
 #### DeepSeek
 `Mamba`  
 - 👉 [Version 1: HA-Siala/Mamba-DeepSeek-v0.1](https://huggingface.co/HA-Siala/Mamba-DeepSeek-v0.1)  
@@ -185,15 +189,22 @@ Model identifiers used by the project include:
 `Python`
 - 👉 [Version 1: HA-Siala/RefactoringPy-DeepSeek-v0.1](https://huggingface.co/HA-Siala/RefactoringPy-DeepSeek-v0.1)  
 
+`Java`
+- 👉 [Version 1: HA-Siala/RefactoringJava-DeepSeek-v0.1](https://huggingface.co/HA-Siala/RefactoringJava-DeepSeek-v0.1)  
+
 ### Full Models
 #### Mistral
 `Mamba`  
 - 👉 [Version 1: HA-Siala/Mamba-full-v0.1](https://huggingface.co/HA-Siala/Mamba-full-v0.1)  
 - 👉 [Version 2: HA-Siala/Mamba-full-v0.2](https://huggingface.co/HA-Siala/Mamba-full-v0.2)  
+
 `Python`
 - 👉 [Version 1: HA-Siala/Detect-Flaws-full-v0.1](https://huggingface.co/HA-Siala/Detect-Flaws-full-v0.1)
 - 👉 [Version 2: HA-Siala/Detect-Flaws-full-v0.2](https://huggingface.co/HA-Siala/Detect-Flaws-full-v0.2)
 - 👉 [Version 1: HA-Siala/RefactoringPy-full-v0.1](https://huggingface.co/HA-Siala/RefactoringPy-full-v0.1)
+
+`Java`
+- 👉 [Version 1: HA-Siala/RefactoringJava-full-v0.1](https://huggingface.co/HA-Siala/RefactoringJava-full-v0.1)
 
 #### DeepSeek
 `Mamba`
@@ -201,6 +212,9 @@ Model identifiers used by the project include:
 
 `Python`
 - 👉 [Version 1: HA-Siala/RefactoringPy-DeepSeek-full-v0.1](https://huggingface.co/HA-Siala/RefactoringPy-DeepSeek-full-v0.1)
+
+`Java`
+- 👉 [Version 1: HA-Siala/RefactoringJava-DeepSeek-full-v0.1](https://huggingface.co/HA-Siala/RefactoringJava-DeepSeek-full-v0.1)
 
 The full-model workflow loads the complete checkpoint directly.
 
