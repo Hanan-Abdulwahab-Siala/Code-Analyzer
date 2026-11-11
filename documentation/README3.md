@@ -76,6 +76,8 @@ Check the input file:
 ls -lh input/sample.txt
 or
 ls -lh input/sample.py
+or
+ls -lh input/sample.java
 ```
 
 You can also test:
@@ -84,6 +86,8 @@ You can also test:
 cat input/sample.txt
 or
 cat input/sample.py
+or
+cat input/sample.java
 ```
 
 ---
