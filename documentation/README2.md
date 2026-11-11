@@ -77,6 +77,8 @@ Check the input file:
 ls -lh input/sample.txt
 or
 ls -lh input/sample.py
+or
+ls -lh input/sample.java
 ```
 
 You can also test:
@@ -85,6 +87,9 @@ You can also test:
 cat input/sample.txt
 or
 cat input/sample.py
+or
+cat input/sample.java
+
 ```
 ---
 
@@ -192,6 +197,17 @@ Mistral + Python + Refactoring + Version 1 + Full Model
  python analyze.py input/sample.py --language Python --model-family Mistral --task "Refactoring" --model-version 1 --model-type "Full Model" 
 ```
 ---
+Mistral + Java + Refactoring + Version 1 + LoRA Adapter
+```bash
+ python analyze.py input/sample.java --language Java --model-family Mistral --task "Refactoring" --model-version 1 --model-type "LoRA Adapter" 
+```
+
+Mistral + Java + Refactoring + Version 1 + Full Model
+```bash
+ python analyze.py input/sample.java --language Java --model-family Mistral --task "Refactoring" --model-version 1 --model-type "Full Model" 
+```
+---
+
 DeepSeek + Mamba + Version 1 + LoRA Adapter
 ```bash
  python analyze.py input/sample.txt --language Mamba --model-family DeepSeek --model-version 1 --model-type "LoRA Adapter" 
@@ -210,6 +226,16 @@ DeepSeek + Python + Version 1 + LoRA Adapter
 DeepSeek + Python + Version 1 + Full Model
 ```bash
  python analyze.py input/sample.py --language Python --model-family DeepSeek --model-version 1 --model-type "Full Model" 
+```
+---
+DeepSeek + Java + Version 1 + LoRA Adapter
+ ```bash
+ python analyze.java input/sample.py --language Java --model-family DeepSeek --model-version 1 --model-type "LoRA Adapter" 
+```
+
+DeepSeek + Java + Version 1 + Full Model
+```bash
+ python analyze.py input/sample.java --language Java --model-family DeepSeek --model-version 1 --model-type "Full Model" 
 ```
 
 The output will be saved to: output/output.txt
