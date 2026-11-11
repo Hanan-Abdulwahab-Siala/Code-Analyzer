@@ -4,7 +4,7 @@ The Gradio interface can be used to:
 
 - Select the model version
 - Select LoRA or full model
-- Enter Mamba/Python code
+- Enter Mamba/Python/Java code
 - Run the analyze program
 - View detected flaws
 - View refactored versions
@@ -100,6 +100,12 @@ or:
 ls -lh input/sample.py
 ```
 
+or:
+
+```bash
+ls -lh input/sample.java
+```
+
 You can also inspect the input file:
 
 ```bash
@@ -110,6 +116,12 @@ or:
 
 ```bash
 cat input/sample.py
+```
+
+or:
+
+```bash
+cat input/sample.java
 ```
 
 ---
