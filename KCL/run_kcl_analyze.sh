@@ -101,7 +101,7 @@ echo
 echo "Running inference..."
 
 # --------------------------------------------------
-# Choose ONE command below starting by python and uncomment it.
+# Choose ONE command below starting with python and uncomment it.
 # --------------------------------------------------
 
 # --------------------------------------------------
@@ -171,6 +171,20 @@ python analyze.py input/sample.txt --language Mamba --model-family Mistral --mod
 # python analyze.py input/sample.py --language Python --model-family Mistral --task "Refactoring" --model-version 1 --model-type "Full Model" 
 
 # --------------------------------------------------
+# MISTRAL - JAVA REFACTORING
+# --------------------------------------------------
+
+## Mistral + Java + Refactoring + Version 1 + LoRA Adapter
+
+# python analyze.py input/sample.java --language Python --model-family Mistral --task "Refactoring" --model-version 1 --model-type "LoRA Adapter" 
+
+# --------------------------------------------------
+
+## Mistral + Java + Refactoring + Version 1 + Full Model
+
+# python analyze.py input/sample.java --language Python --model-family Mistral --task "Refactoring" --model-version 1 --model-type "Full Model" 
+
+# --------------------------------------------------
 # DEEPSEEK - MAMBA
 # --------------------------------------------------
 
@@ -197,6 +211,20 @@ python analyze.py input/sample.txt --language Mamba --model-family Mistral --mod
 ## DeepSeek + Python + Version 1 + Full Model
 
 # python analyze.py input/sample.py --language Python --model-family DeepSeek --model-version 1 --model-type "Full Model" 
+
+# --------------------------------------------------
+# DEEPSEEK - JAVA
+# --------------------------------------------------
+
+## DeepSeek + Java + Version 1 + LoRA Adapter
+
+# python analyze.py input/sample.java --language Python --model-family DeepSeek --model-version 1 --model-type "LoRA Adapter" 
+
+# --------------------------------------------------
+
+## DeepSeek + Java + Version 1 + Full Model
+
+# python analyze.py input/sample.java --language Python --model-family DeepSeek --model-version 1 --model-type "Full Model" 
 
 # --------------------------------------------------
 
