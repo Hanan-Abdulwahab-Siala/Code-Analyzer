@@ -196,30 +196,43 @@ It should point to a Python executable inside your virtual environment, for exam
 > **Note:** The location of the virtual environment may be different on your system. Use the virtual environment created for the project.
 
 ---
+#### 6. Run the Gradio Application
 
-#### 6. Run the Gradio Program
-
-Run the Gradio application:
+Start the Gradio application on the HPC compute node:
 
 ```bash
 python app.py
 ```
 
-The application should start using the port configured in `app.py`.
+The application should start on the port configured in `app.py`.
+
+For example:
+
+```text
+* Running on local URL: http://0.0.0.0:7860
+```
+
+In this example, the application uses port `7860`.
+
+Keep this HPC terminal open while using the application.
 
 ---
 
 #### 7. Create an SSH Tunnel
 
-Open a **second CMD window on your local Windows computer**.
+To access the Gradio application from your local computer, you need to create an SSH tunnel between your Windows computer and the HPC compute node.
 
-The SSH tunnel forwards a port from your local computer to the port where the Gradio application is running on the HPC compute node.
+Open a **second Command Prompt (CMD) window on your local Windows computer**.
 
-There are two ways to identify the compute node: using the **SLURM job ID** or using the **SLURM job name**.
+The SSH tunnel forwards a local port on your computer to the port where the Gradio application is running on the HPC compute node.
 
-### Option A: Use the SLURM Job ID
+You can identify the compute node using either the SLURM job ID or the SLURM job name.
 
-If you know the SLURM job ID, use:
+**Important:** The following commands use Windows Command Prompt (CMD), not PowerShell. For KCL HPC, the `-m hmac-sha2-512` option is used to specify the SSH MAC algorithm required by the connection configuration.
+
+### Option A: Use the SLURM Job ID (Recommended)
+
+If you know your SLURM job ID, use:
 
 ```cmd
 for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -j JOB_ID -h -o %%N"') do ssh -m hmac-sha2-512 -N -L LOCAL_PORT:%N:REMOTE_PORT USERNAME@HPC_HOST
@@ -227,81 +240,65 @@ for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -j JOB_I
 
 Replace:
 
-* `USERNAME` → your HPC username
-* `HPC_HOST` → your HPC login hostname
-* `JOB_ID` → your SLURM job ID
-* `LOCAL_PORT` → the port on your local computer
-* `REMOTE_PORT` → the port used by the Gradio application
+- `USERNAME` → Your HPC username.
+- `HPC_HOST` → Your HPC login hostname.
+- `JOB_ID` → Your numeric SLURM job ID.
+- `LOCAL_PORT` → The port on your local computer.
+- `REMOTE_PORT` → The port used by the Gradio application.
 
-For example, if:
+**Example:**
 
-* the SLURM job ID is `12345678`
-* the Gradio application uses port `7860`
-* the local port is `7860`
+Suppose:
+- HPC username: `k12345`
+- HPC hostname: `hpc.create.kcl.ac.uk`
+- SLURM job ID: `37241627`
+- Local port: `7860`
+- Gradio port: `7860`
 
-use:
-
-```cmd
-for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -j 12345678 -h -o %%N"') do ssh -m hmac-sha2-512 -N -L 7860:%N:7860 USERNAME@HPC_HOST
-```
-
-> **Important:** `-j` means **job ID**. Only provide the numeric SLURM job ID after `-j`. Do **not** write the job name after `-j`.
-
-### Option B: Use the SLURM Job Name
-
-If you want to identify the job by its SLURM job name, use `-n`:
-
-```cmd
-for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -n \"JOB_NAME\" -h -o %%N"') do ssh -m hmac-sha2-512 -N -L LOCAL_PORT:%N:REMOTE_PORT USERNAME@HPC_HOST
-```
-
-For example, if your SLURM job is named `Jupyter Lab`:
-
-```cmd
-for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -n \"Jupyter Lab\" -h -o %%N"') do ssh -m hmac-sha2-512 -N -L 7860:%N:7860 USERNAME@HPC_HOST
-```
-
-> **Recommendation:** Using the numeric SLURM job ID with `-j` is usually clearer and avoids problems caused by spaces or special characters in job names.
-
-Keep this second CMD window open while using the Gradio application.
-
-**KCL example:**
-
-If your KCL SLURM job ID is `37241627`, your command would be:
+The command becomes:
 
 ```cmd
 for /f "delims=" %N in ('ssh -m hmac-sha2-512 k12345@hpc.create.kcl.ac.uk "squeue -j 37241627 -h -o %%N"') do ssh -m hmac-sha2-512 -N -L 7860:%N:7860 k12345@hpc.create.kcl.ac.uk
 ```
 
-Notice that the command uses:
+This command automatically:
+1. Connects to the HPC login node.
+2. Retrieves the compute node assigned to the specified SLURM job.
+3. Establishes an SSH tunnel forwarding local port `7860` to port `7860` on the allocated compute node.
 
-```text
-squeue -j 37241627
+### Option B: Use the SLURM Job Name
+
+Alternatively, you can identify your job using its SLURM job name with the `-n` option:
+
+```cmd
+for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -n \"JOB_NAME\" -h -o %%N"') do ssh -m hmac-sha2-512 -N -L LOCAL_PORT:%N:REMOTE_PORT USERNAME@HPC_HOST
 ```
 
-and **not**:
+For example, if your SLURM job name is `Jupyter Lab`:
 
-```text
-squeue -j Jupyter Lab 37241627
+```cmd
+for /f "delims=" %N in ('ssh -m hmac-sha2-512 k12345@hpc.create.kcl.ac.uk "squeue -n \"Jupyter Lab\" -h -o %%N"') do ssh -m hmac-sha2-512 -N -L 7860:%N:7860 k12345@hpc.create.kcl.ac.uk
 ```
+
+**Recommendation:** Using the numeric SLURM job ID with `-j` is preferable because it avoids ambiguity when multiple jobs have similar names.
+
+**Important:** If you put these commands in a Windows `.bat` file rather than typing them directly into CMD, replace `%N` with `%%N`.
 
 ---
 
 #### 8. Open the Gradio Application
 
-Leave both windows open:
+After establishing the SSH tunnel, keep both terminals open:
 
-1. The HPC terminal running `python app.py`
-2. The local Windows CMD window running the SSH tunnel
+1. The HPC terminal running `python app.py`.
+2. The local Windows CMD terminal maintaining the SSH tunnel.
 
-Then open a web browser on your local computer and enter:
+Open your web browser on your local computer and navigate to:
 
 ```text
 http://localhost:7860
 ```
 
-Your Gradio application should open in the browser.
+Your Gradio application should now be accessible through your local browser.
 
----
-
-
+**Note:** If you close either terminal, the application or SSH tunnel will stop working. Make sure that the SLURM job remains active while using the application.
