@@ -153,11 +153,12 @@ JOBID       PARTITION   NAME           USER    ST   NODELIST
 ```
 
 ---
+
 #### 6. Open the SSH Tunnel
 
-Now go to your Windows PC and open a **second CMD window**.
+Now go to your Windows PC and open a **second Command Prompt (CMD) window**.
 
-Use the **JOBID obtained in Step 5** to find the compute node running your SLURM job and create an SSH tunnel to the Gradio application.
+Use the **JOBID obtained in Step 5** to identify the compute node running your SLURM job and establish an SSH tunnel to the Gradio application.
 
 The general command is:
 
@@ -167,19 +168,21 @@ for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -j JOB_I
 
 Replace:
 
-* `USERNAME` → your HPC username
-* `HPC_HOST` → your HPC login hostname
-* `JOB_ID` → the SLURM job ID obtained in Step 5
-* `LOCAL_PORT` → the port on your local computer, e.g. `7860`
-* `REMOTE_PORT` → the port used by the Gradio application, e.g. `7860`
+- `USERNAME` → Your HPC username.
+- `HPC_HOST` → Your HPC login hostname.
+- `JOB_ID` → The numeric SLURM job ID obtained in Step 5.
+- `LOCAL_PORT` → The port on your local computer (e.g., `7860`).
+- `REMOTE_PORT` → The port used by the Gradio application (e.g., `7860`).
 
-For example, if your JOBID is:
+**Example:**
+
+Suppose your JOBID is:
 
 ```text
 12345678
 ```
 
-and the Gradio application uses port `7860`, use:
+and the Gradio application uses port `7860`. The command becomes:
 
 ```cmd
 for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -j 12345678 -h -o %%N"') do ssh -m hmac-sha2-512 -N -L 7860:%N:7860 USERNAME@HPC_HOST
@@ -187,40 +190,54 @@ for /f "delims=" %N in ('ssh -m hmac-sha2-512 USERNAME@HPC_HOST "squeue -j 12345
 
 **KCL example:**
 
-If your KCL username is `k12345`, your KCL HPC hostname is `hpc.create.kcl.ac.uk`, and your JOBID is `12345678`:
+If your KCL username is `k12345`, your HPC hostname is `hpc.create.kcl.ac.uk`, and your JOBID is `12345678`, use:
 
 ```cmd
 for /f "delims=" %N in ('ssh -m hmac-sha2-512 k12345@hpc.create.kcl.ac.uk "squeue -j 12345678 -h -o %%N"') do ssh -m hmac-sha2-512 -N -L 7860:%N:7860 k12345@hpc.create.kcl.ac.uk
 ```
 
-> **Important:** When using `squeue -j`, provide **only the numeric JOBID**. Do not include the job name.
+**How does this command work?**
 
-For example, this is **incorrect**:
+1. The first SSH command connects to the KCL HPC login node.
+2. `squeue -j 12345678 -h -o %%N` retrieves the compute-node hostname assigned to your SLURM job.
+3. The Windows `for /f` command stores the returned hostname in the variable `%N`.
+4. The second SSH command establishes the tunnel, forwarding local port `7860` to port `7860` on the allocated compute node.
 
-```bash
-squeue -j Jupyter Lab 12345678
-```
+**Important:**
 
-The correct command is:
+- When using `squeue -j`, provide **only the numeric JOBID**. Do not include the job name.
 
-```bash
-squeue -j 12345678
-```
+  Incorrect:
 
-Keep this CMD window open while using the Gradio interface.
+  ```bash
+  squeue -j Jupyter Lab 12345678
+  ```
+
+  Correct:
+
+  ```bash
+  squeue -j 12345678
+  ```
+
+- The option `-m hmac-sha2-512` specifies the SSH MAC algorithm used for the KCL connection.
+- The command is intended for Windows CMD, not PowerShell.
+- When the tunnel is established, the CMD window may appear to do nothing. This is normal. Keep it open while using the Gradio application.
+- Make sure your SLURM job is still running.
 
 ---
 
 #### 7. Open Gradio in Your Browser
 
-Once the SSH tunnel is active, open Chrome, Edge, Firefox, or another browser.
+Once the SSH tunnel is established, open Chrome, Edge, Firefox, or another web browser on your local computer.
 
-Go to:
+Navigate to:
 
 ```text
 http://localhost:7860
 ```
 
-The Gradio interface should appear.
+The Gradio interface should now appear in your browser.
+
+**Note:** Keep both the HPC terminal running `python app.py` and the Windows CMD window maintaining the SSH tunnel open while using the application.
 
 ---
