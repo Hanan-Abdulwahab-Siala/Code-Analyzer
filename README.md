@@ -58,47 +58,75 @@ Recommended:
 - NVIDIA GPU with CUDA support for GPU inference
 
 ---
-
 ## Installation
 
-Clone the repository:
+### 1. Clone the Repository
+
+Clone the Code-Analyzer repository:
 
 ```bash
 git clone https://github.com/Hanan-Abdulwahab-Siala/Code-Analyzer.git
 cd Code-Analyzer
 ```
 
-Create a virtual environment:
+### 2. Create a Virtual Environment
+
+Create a Python virtual environment:
+
+**Linux / macOS / HPC**
 
 ```bash
 python3 -m venv ~/venvs
 ```
 
-Activate the virtual environment.
-
-**Linux / macOS**
-
-```bash
-source ~/venvs/bin/activate
-
-```
-
 **Windows**
 
 ```bash
-. ~/venvs/bin/activate
+python -m venv .venv
 ```
 
-Upgrade pip:
+### 3. Activate the Virtual Environment
+
+**Linux / macOS / HPC**
+
+```bash
+source ~/venvs/bin/activate
+```
+
+**Windows CMD**
+
+```cmd
+.venv\Scripts\activate.bat
+```
+
+**Windows PowerShell**
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### 4. Upgrade pip
+
+Upgrade pip to the latest version:
 
 ```bash
 python -m pip install --upgrade pip
 ```
 
-Install the dependencies:
+### 5. Install the Dependencies
+
+Install the required Python packages:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+```
+
+**Note for KCL HPC users:** Ensure that the appropriate Python environment is loaded and activated before installing dependencies. If you encounter an Expat library conflict, check the `LD_LIBRARY_PATH` configuration and ensure that incompatible Anaconda libraries are not interfering with the system Python installation.
+
+After installation, verify that Gradio is available:
+
+```bash
+python -c "import gradio; print(gradio.__version__)"
 ```
 
 ---
